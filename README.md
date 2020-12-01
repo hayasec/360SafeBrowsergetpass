@@ -38,7 +38,7 @@
 
 ![image-20201201141528255](README.assets/image-20201201141528255.png)
 
-整体加密流程为：MachineGuid --> 隔位填充字符--> Base64 --> AES-ECB 128
+整体加密流程为：MachineGuid --> Base64 --> AES-ECB 128
 
 更加具体的解密细节请移步看雪论坛：https://bbs.pediy.com/thread-263905.htm
 
