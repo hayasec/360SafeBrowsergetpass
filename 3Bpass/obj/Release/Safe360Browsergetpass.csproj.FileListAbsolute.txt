@@ -1,0 +1,5 @@
+C:\Users\dev\source\Safe360Browsergetpass\bin\Release\Safe360Browsergetpass.exe
+C:\Users\dev\source\Safe360Browsergetpass\bin\Release\Safe360Browsergetpass.pdb
+C:\Users\dev\source\Safe360Browsergetpass\obj\Release\Safe360Browsergetpass.csprojAssemblyReference.cache
+C:\Users\dev\source\Safe360Browsergetpass\obj\Release\Safe360Browsergetpass.exe
+C:\Users\dev\source\Safe360Browsergetpass\obj\Release\Safe360Browsergetpass.pdb

@@ -1,0 +1,4 @@
+C:\Users\dev\source\Safe360Browsergetpass\bin\Debug\Safe360Browsergetpass.exe
+C:\Users\dev\source\Safe360Browsergetpass\bin\Debug\Safe360Browsergetpass.pdb
+C:\Users\dev\source\Safe360Browsergetpass\obj\Debug\Safe360Browsergetpass.exe
+C:\Users\dev\source\Safe360Browsergetpass\obj\Debug\Safe360Browsergetpass.pdb
